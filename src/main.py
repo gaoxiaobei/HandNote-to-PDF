@@ -2,7 +2,7 @@
 
 import argparse
 import os
-from preprocessing import load_image, to_grayscale, apply_binary_threshold, reduce_noise
+from preprocessing import load_image, to_grayscale, apply_adaptive_threshold, reduce_noise
 from vectorization import find_contours, contours_to_svg
 from pdf_integration import overlay_svg_on_pdf
 
@@ -29,7 +29,7 @@ def main():
     
     # Preprocess the image
     grayscale_image = to_grayscale(image)
-    binary_image = apply_binary_threshold(grayscale_image)
+    binary_image = apply_adaptive_threshold(grayscale_image)
     denoised_image = reduce_noise(binary_image)
     
     # Find contours

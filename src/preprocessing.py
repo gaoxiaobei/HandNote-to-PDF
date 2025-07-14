@@ -14,6 +14,11 @@ def apply_binary_threshold(image, threshold_value=128):
     _, binary_image = cv2.threshold(image, threshold_value, 255, cv2.THRESH_BINARY_INV)
     return binary_image
 
+def apply_adaptive_threshold(image):
+    """Applies an adaptive threshold to the image."""
+    return cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                 cv2.THRESH_BINARY_INV, 11, 2)
+
 def reduce_noise(image):
     """Reduces noise in the image using a median blur."""
     return cv2.medianBlur(image, 5)
