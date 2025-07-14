@@ -2,7 +2,7 @@
 
 import argparse
 import os
-from preprocessing import load_image, to_grayscale, apply_adaptive_threshold, reduce_noise
+from preprocessing import load_image, correct_perspective, to_grayscale, apply_adaptive_threshold, reduce_noise
 from vectorization import find_contours, contours_to_svg
 from pdf_integration import overlay_svg_on_pdf
 
@@ -27,8 +27,11 @@ def main():
     # Load the image
     image = load_image(input_image_path)
     
+    # Correct the perspective
+    corrected_image = correct_perspective(image)
+    
     # Preprocess the image
-    grayscale_image = to_grayscale(image)
+    grayscale_image = to_grayscale(corrected_image)
     binary_image = apply_adaptive_threshold(grayscale_image)
     denoised_image = reduce_noise(binary_image)
     
@@ -36,7 +39,7 @@ def main():
     contours = find_contours(denoised_image)
     
     # Convert contours to SVG
-    height, width, _ = image.shape
+    height, width, _ = corrected_image.shape
     contours_to_svg(contours, width, height, temp_svg_path)
     
     # Overlay the SVG on the PDF
