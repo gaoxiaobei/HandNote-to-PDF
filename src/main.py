@@ -1,23 +1,29 @@
 # HandNote-to-PDF/src/main.py
 
+import argparse
+import os
 from preprocessing import load_image, to_grayscale, apply_binary_threshold, reduce_noise
 from vectorization import find_contours, contours_to_svg
 from pdf_integration import overlay_svg_on_pdf
-from create_dummy_image import create_dummy_image
-from create_dummy_pdf import create_dummy_pdf
 
 def main():
-    """Main function to run the full pipeline."""
+    """Main function to run the full pipeline with command-line arguments."""
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description="Convert handwritten notes on a PDF to a new PDF with vectorized annotations.")
+    parser.add_argument("--image", required=True, help="Path to the input image file with handwritten notes.")
+    parser.add_argument("--pdf", required=True, help="Path to the original PDF file.")
+    parser.add_argument("--output", required=True, help="Path to the output PDF file.")
+    args = parser.parse_args()
+
     # Define file paths
-    input_image_path = 'data/dummy_note.png'
-    input_pdf_path = 'data/dummy_document.pdf'
-    output_svg_path = 'output/dummy_note.svg'
-    output_pdf_path = 'output/final_document.pdf'
+    input_image_path = args.image
+    input_pdf_path = args.pdf
+    output_pdf_path = args.output
     
-    # Create dummy files for testing
-    create_dummy_image(input_image_path)
-    create_dummy_pdf(input_pdf_path)
-    
+    # Define a temporary path for the SVG file
+    output_dir = os.path.dirname(output_pdf_path)
+    temp_svg_path = os.path.join(output_dir, "temp.svg")
+
     # Load the image
     image = load_image(input_image_path)
     
@@ -31,10 +37,13 @@ def main():
     
     # Convert contours to SVG
     height, width, _ = image.shape
-    contours_to_svg(contours, width, height, output_svg_path)
+    contours_to_svg(contours, width, height, temp_svg_path)
     
     # Overlay the SVG on the PDF
-    overlay_svg_on_pdf(input_pdf_path, output_svg_path, output_pdf_path)
+    overlay_svg_on_pdf(input_pdf_path, temp_svg_path, output_pdf_path)
+    
+    # Clean up the temporary SVG file
+    os.remove(temp_svg_path)
     
     print(f"Successfully created final PDF with vectorized notes at {output_pdf_path}")
 
