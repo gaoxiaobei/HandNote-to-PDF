@@ -1,0 +1,6 @@
+opencv-python
+PyMuPDF
+reportlab
+numpy
+svgwrite
+svglib

@@ -42,7 +42,7 @@ In the digital age, many people still prefer taking notes on paper due to its in
 
 ### Development Roadmap
 
-- [ ] Image preprocessing module
+- [x] Image preprocessing module
 - [ ] Handwriting recognition algorithm implementation
 - [ ] Vectorization conversion functionality
 - [ ] PDF document integration tools
@@ -98,7 +98,7 @@ HandNote-to-PDF 是一个创新的学习工具，旨在打通纸质学习和电�
 
 ### 开发计划
 
-- [ ] 图像预处理模块
+- [x] 图像预处理模块
 - [ ] 手写识别算法实现
 - [ ] 矢量化转换功能
 - [ ] PDF文档整合工具
