@@ -40,6 +40,31 @@ In the digital age, many people still prefer taking notes on paper due to its in
 - Researcher literature review annotations
 - Professional document review markups
 
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/gaoxiaobei/HandNote-to-PDF.git
+    cd HandNote-to-PDF
+    ```
+
+2.  Install the required dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Usage
+
+To use the tool, run the `main.py` script with the following command-line arguments:
+
+```bash
+python src/main.py --image <path_to_your_image> --pdf <path_to_your_pdf> --output <path_for_the_output_pdf>
+```
+
+-   `--image`: The path to the photo of your annotated document.
+-   `--pdf`: The path to the original, clean PDF document.
+-   `--output`: The path where the final PDF with the vectorized notes will be saved.
+
 ### Development Roadmap
 
 - [x] Image preprocessing module
@@ -94,6 +119,31 @@ HandNote-to-PDF 是一个创新的学习工具，旨在打通纸质学习和电�
 - 教师批改作业数字化
 - 研究人员文献阅读笔记
 - 专业人士文档审阅标注
+
+### 安装
+
+1.  克隆仓库：
+    ```bash
+    git clone https://github.com/gaoxiaobei/HandNote-to-PDF.git
+    cd HandNote-to-PDF
+    ```
+
+2.  安装所需的依赖项：
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### 使用方法
+
+要使用此工具，请通过以下命令行参数运行 `main.py` 脚本：
+
+```bash
+python src/main.py --image <您的图片路径> --pdf <您的PDF路径> --output <输出PDF的路径>
+```
+
+-   `--image`: 您拍摄的带有手写笔记的文档照片的路径。
+-   `--pdf`: 原始的、干净的PDF文档的路径。
+-   `--output`: 将保存带有矢量化笔记的最终PDF的路径。
 
 ### 开发计划
 
