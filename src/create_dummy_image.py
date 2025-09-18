@@ -16,4 +16,9 @@ def create_dummy_image(file_path, width=800, height=600):
     cv2.imwrite(file_path, image)
 
 if __name__ == '__main__':
-    create_dummy_image('data/dummy_note.png')
+    import sys
+    if len(sys.argv) > 1:
+        file_path = sys.argv[1]
+    else:
+        file_path = 'data/dummy_note.png'
+    create_dummy_image(file_path)

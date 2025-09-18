@@ -55,7 +55,9 @@ In the digital age, many people still prefer taking notes on paper due to its in
 
 ### Usage
 
-To use the tool, run the `main.py` script with the following command-line arguments:
+#### Single Image Processing
+
+To process a single image, run the `main.py` script with the following command-line arguments:
 
 ```bash
 python src/main.py --image <path_to_your_image> --pdf <path_to_your_pdf> --output <path_for_the_output_pdf>
@@ -64,6 +66,35 @@ python src/main.py --image <path_to_your_image> --pdf <path_to_your_pdf> --outpu
 -   `--image`: The path to the photo of your annotated document.
 -   `--pdf`: The path to the original, clean PDF document.
 -   `--output`: The path where the final PDF with the vectorized notes will be saved.
+
+Additional options:
+-   `--threshold <value>`: Use binary thresholding with a specific value (0-255) instead of adaptive thresholding
+-   `--no-perspective`: Skip the perspective correction step
+-   `--noise-reduction <value>`: Set the noise reduction strength (odd number, default: 5)
+
+#### Batch Processing
+
+To process multiple images with the same PDF, use the batch processing script:
+
+```bash
+python src/batch_process.py --images <path_to_image1> <path_to_image2> ... --pdf <path_to_your_pdf> --output-dir <output_directory>
+```
+
+-   `--images`: Paths to the photos of your annotated documents (multiple files)
+-   `--pdf`: The path to the original, clean PDF document
+-   `--output-dir`: Directory where the final PDFs with vectorized notes will be saved
+
+The batch processor accepts the same additional options as the single image processor.
+
+#### Graphical User Interface
+
+For a more user-friendly experience, you can use the graphical interface:
+
+```bash
+python src/gui.py
+```
+
+The GUI provides the same functionality as the command-line interface with a visual interface for selecting files and adjusting processing options.
 
 ### Development Roadmap
 
